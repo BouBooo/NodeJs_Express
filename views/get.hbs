@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>{{{title}}}</title>
+</head>
+<body>
+
+<h1>Tâche {{{id}}}</h1>
+
+
+<div class="container"></div>
+<table style="border:2px black solid" width="55%">
+  <tr style="border:2px black solid" width="30%">
+    <th>Tâche</th>
+    <th>Avancée</th>
+    <th>Date de création</th>
+    <th>Date de modification</th>
+    <th>Suppression</th>
+    <th>Modification</th>
+  </tr>
+  <tr style="border:2px black solid" width="30%">
+    <td align="center">{{{name}}}</td>
+    <td align="center">{{{completion}}}</td>
+    <td align="center">{{{created_at}}}</td>
+    <td align="center">{{{updated_at}}}</td>
+    <td align="center">
+      <form method="POST" action="{{{id}}}?_method=DELETE">
+          <button type="submit"> Supprimer </button>
+      </form>
+      <br>
+      <br>
+      </td>
+    <td align="center">
+            <form method="POST" action="edit/{{{id}}}?_method=PUT">
+          <div class="form-example">
+           <label for="name">Name : </label>
+            <input width="20px" type="name" name="name" id="name" required>
+          </div>
+          <br>
+          <div class="form-example">
+            <label for="completion">Completion : </label>
+            <select name="completion" id="completion">
+              <option value="todo">todo</option>
+              <option value="inprogress">inprogress</option>
+              <option value="done">done</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit"> Modifier </button>
+      </form>
+    </td>
+    </td>
+
+  </tr>
+</table>
+</div>
+
+<br>
+<br>
+
+<h2>Ajouter une tâche</h2>
+        
+        <form method="POST" action="/todos">
+          <div class="form-example">
+           <label for="name">Name : </label>
+            <input width="20px" type="name" name="name" id="name" required>
+          </div>
+          <br>
+          <div class="form-example">
+            <label for="completion">Completion : </label>
+            <select name="completion" id="completion">
+              <option value="todo">todo</option>
+              <option value="inprogress">inprogress</option>
+              <option value="done">done</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit"> Ajouter </button>
+      </form>
+</body>
+</html>
