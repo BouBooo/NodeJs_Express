@@ -13,22 +13,19 @@ api.use(methodOverride('_method'))
 db.open('api.db').then(() => {
   Promise.all([
     db.run("CREATE TABLE IF NOT EXISTS todos (name, completion, created_at, updated_at, user_id)"),
+    /*db.run("DROP TABLE todos"),*/
+     /*db.run("INSERT INTO todos VALUES('todo_name','completion', 'date_created', 'date_up', 'userId')"),*/
+    /*db.run("DROP TABLE users"),*/
+    db.run("CREATE TABLE IF NOT EXISTS users (firstname, lastname, username, password, email, created_at, updated_at)"),
+    /*db.run("INSERT INTO users VALUES('name','firstname', 'username', 'password','email', '', '')"),*/
   ]).then(() => {
-    console.log('Database todos is ready')
+    console.log('Database todos and users is ready')
   }).catch((err) => {
     console.log('Une erreur est survenue :', err)
   })
 })
 
-db.open('api.db').then(() => {
-  Promise.all([
-    db.run("CREATE TABLE IF NOT EXISTS users (firstname, lastname, password, email, created_at, updated_at)"),
-  ]).then(() => {
-    console.log('Database users is ready')
-  }).catch((err) => {
-    console.log('Une erreur est survenue :', err)
-  })
-})
+
 
 // MIDDLEWARE POUR PARSER LE BODY
 api.use(bodyParser.json())
