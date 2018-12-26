@@ -36,9 +36,10 @@ api.use(bodyParser.urlencoded({ extended: false }))
 // api.use(methodOverride(‘_method’))
 
 // ROUTES
-api.use('/todos', require('./controllers/todos'))
-api.use('/users', require('./controllers/users'))
+api.use('/todos', require('./controllers/todos.js'))
+api.use('/users', require('./controllers/users.js'))
 
 api.listen(3000);
 
-console.log("http://localhost:3000/");
+console.log("http://localhost:3000/todos -> for todos");
+console.log("http://localhost:3000/users -> for users");
