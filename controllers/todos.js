@@ -34,6 +34,7 @@ router.get('/:id', (req, res) => {
         name: todo['name'],  // On récupère le nom et l'avancée de la tâche
         completion: todo['completion'],
         id: todo['id'],
+        user_id: todo['user_id'],
         created_at: todo['created_at'],
         updated_at: todo['updated_at']
     }))
@@ -44,7 +45,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  if (!req.body || (req.body && (!req.body.name || !req.body.completion))) 
+  if (!req.body || (req.body && (!req.body.name || !req.body.completion || !req.body.user_id))) 
   return res.status(404).send('NOT FOUND')
 
   Todos.create(req.body)
@@ -56,7 +57,8 @@ router.post('/', (req, res) => {
         completion: todo['completion'],
         id: todo['id'],
         created_at: todo['created_at'],
-        updated_at: todo['updated_at']
+        updated_at: todo['updated_at'],
+        user_id: todo['user_id']
     }))
   .catch((err) => {
     return res.status(404).send(err)
@@ -97,6 +99,25 @@ router.delete('/:id', (req, res) => {
   /*res.json({ message: 'Todo supprimée avec succès' }))*/
   .catch((err) => {
     return res.status(404).send(err)
+  })
+})
+
+
+router.use((err, req, res, next) => {
+  res.format({
+    html: () => {
+      console.log("error : " + err)
+      res.render("error404", {
+        error: err
+      })
+    },
+    json: () => {
+      console.log("error : " + err)
+      res.json({
+        message: "Error 500",
+        description: "Server Error"
+      })
+    }
   })
 })
 

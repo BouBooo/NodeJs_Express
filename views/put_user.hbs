@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{{title}}}</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/background.css">
+    </head>
+<body>
+    
+    
+    
+    
+    <form method="POST" action="edit/{{{id}}}?_method=PUT">
+        <div class="form-example">
+           <label for="firstname">Firstname : </label>
+            <input width="20px" type="firstname" name="firstname" id="firstname" required>
+          </div>
+          <br>
+        <div class="form-example">
+           <label for="lastname">Lastname : </label>
+            <input width="20px" type="lastname" name="lastname" id="lastname" required>
+          </div>
+          <br>
+        <div class="form-example">
+           <label for="name">Other : </label>
+            <input width="20px" type="name" name="name" id="name" required>
+          </div>
+          <br>
+          <div class="form-example">
+            <label for="completion">User : </label>
+            <select name="completion" id="completion">
+              <option value="todo">todo</option>
+              <option value="inprogress">inprogress</option>
+              <option value="done">done</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit"> Modifier </button>
+      </form>

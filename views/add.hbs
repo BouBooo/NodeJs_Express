@@ -14,14 +14,17 @@
     <th>Avancée</th>
     <th>Date de création</th>
     <th>Date de modification</th>
+    <th>Utilisateur</th>
     <th>Suppression</th>
     <th>Modification</th>
+
   </tr>
   <tr style="border:2px black solid" width="30%">
     <td align="center">{{{name}}}</td>
     <td align="center">{{{completion}}}</td>
     <td align="center">{{{created_at}}}</td>
     <td align="center">{{{updated_at}}}</td>
+    <td align="center">{{{user_id}}}</td>
     <td align="center">
       <form method="POST" action="{{{id}}}?_method=DELETE">
           <button type="submit"> Supprimer </button>
