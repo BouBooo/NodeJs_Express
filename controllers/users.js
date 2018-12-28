@@ -57,21 +57,25 @@ router.post('/', (req, res) => {
   })
 })
 
-router.put('edit/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   req.body.updated_at = new Date() // Update time
   req.body.id = req.params.id // Add id to body
   Users.update(req.body)
   .then((user) => 
-  res.render("put_user", 
+  res.render("get_user", 
   {
-      title : "Florent",
-      name: todo['name'],  // On récupère le nom et l'avancée de la tâche
-      completion: todo['completion'],
-      id: todo['id'],
-      created_at: todo['created_at'],
-      updated_at: todo['updated_at']
+    title : "Florent",
+    id : user['id'],
+    firstname : user['firstname'], // On récupère le nom et l'avancée de la tâche
+    lastname : user['lastname'],
+    email: user['email'],
+    username: user['username'],
+    password: user['password'],
+    created_at: user['created_at'],
+    updated_at: user['updated_at']
   }))
+
   
   .catch((err) => {
     return res.status(404).send(err)
