@@ -11,35 +11,12 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/background.css">
     </head>
-<body>
-    
-    
-    
-    
-    <form method="POST" action="edit/{{{id}}}?_method=PUT">
-        <div class="form-example">
-           <label for="firstname">Firstname : </label>
-            <input width="20px" type="firstname" name="firstname" id="firstname" required>
-          </div>
-          <br>
-        <div class="form-example">
-           <label for="lastname">Lastname : </label>
-            <input width="20px" type="lastname" name="lastname" id="lastname" required>
-          </div>
-          <br>
-        <div class="form-example">
-           <label for="name">Other : </label>
-            <input width="20px" type="name" name="name" id="name" required>
-          </div>
-          <br>
-          <div class="form-example">
-            <label for="completion">User : </label>
-            <select name="completion" id="completion">
-              <option value="todo">todo</option>
-              <option value="inprogress">inprogress</option>
-              <option value="done">done</option>
-            </select>
-          </div>
-          <br>
-          <button type="submit"> Modifier </button>
-      </form>
+
+<body align="center">
+
+<h1>User {{{id}}} edited with success ! </h1>
+<form method="GET" action="{{{id}}}?_method=GET">
+    <button class="btn btn-link" type="submit" value="See user">See user</button>
+</form>
+
+</body>

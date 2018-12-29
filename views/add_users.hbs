@@ -10,17 +10,24 @@
         <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/background.css">
-        <meta http-equiv="refresh" content="5;URL=todos/">
     </head>
 <body align="center">
 
-<h1>Tâche {{{id}}} modifiée avec succès ! </h1>
+<h1>User added with success ! Id :  <span style="color:green">{{{id}}}</span></h1>
 
-<!--<a href="../{{{id}}}">See todo</a>-->
 
-<form method="GET" action="../{{{id}}}?_method=GET">
-    <button class="btn btn-link" type="submit" value="See todo">See todo</button>
-</form>
+<a href="users/{{{id}}}">See user</a>
+<br>
+<br>
+<br>
+
+<div align="center">
+  <a href="/users"><button class="btn btn-dark btn-lg mt-4">Return to the users manager</button></a>
+</div>
+
+<br>
+<br>
+
 
 </body>
 </html>
