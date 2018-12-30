@@ -10,12 +10,19 @@ module.exports = {
   },
   async create(params) {
 
-    params.created_at = new Date()
-    params.updated_at = new Date()
+    params.created_at = new Date().toISOString().
+  
+      replace(/T/, ' ').      // replace T with a space
+      replace(/\..+/, '')     // delete the dot and everything after
 
+    params.updated_at = new Date().toISOString().
+
+    replace(/T/, ' ').      // replace T with a space
+    replace(/\..+/, '')     // delete the dot and everything after
+    
     const data = _.values(params)
 
-    const { lastID } = await db.run("INSERT INTO todos VALUES(?,?,?,?)", data)
+    const { lastID } = await db.run("INSERT INTO todos VALUES(?,?,?,?,?)", data)
 
     return this.findOne(lastID)
   },
@@ -43,3 +50,5 @@ module.exports = {
     }
   },
 }
+
+

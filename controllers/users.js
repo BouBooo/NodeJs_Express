@@ -51,7 +51,18 @@ router.post('/', (req, res) => {
 
   Users.create([req.body.firstname, req.body.lastname, req.body.username, req.body.password, req.body.email])
   .then((user) => 
-    res.json(user))
+  res.render("add_users", 
+  {
+      title : "Florent",
+      id : user['id'],
+      firstname : user['firstname'], // On récupère le nom et l'avancée de la tâche
+      lastname : user['lastname'],
+      email: user['email'],
+      username: user['username'],
+      password: user['password'],
+      created_at: user['created_at'],
+      updated_at: user['updated_at']
+  }))
   .catch((err) => {
     return res.status(404).send(err)
   })
@@ -59,11 +70,14 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
-  req.body.updated_at = new Date() // Update time
+  req.body.updated_at = new Date().toISOString().  // Update time
+
+  replace(/T/, ' ').      // replace T with a space
+  replace(/\..+/, '')     // delete the dot and everything after  
   req.body.id = req.params.id // Add id to body
   Users.update(req.body)
   .then((user) => 
-  res.render("get_user", 
+  res.render("put_user", 
   {
     title : "Florent",
     id : user['id'],

@@ -67,7 +67,11 @@ router.post('/', (req, res) => {
 
 router.put('/edit/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
-  req.body.updated_at = new Date() // Update time
+  req.body.updated_at = new Date().toISOString().
+
+  replace(/T/, ' ').      // replace T with a space
+  replace(/\..+/, '')     // delete the dot and everything after // Update time
+  
   req.body.id = req.params.id // Add id to body
   Todos.update(req.body)
   .then((todo) => 
