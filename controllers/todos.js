@@ -5,18 +5,14 @@ const _ = require('lodash')
 router.get('/', (req, res) => {
   Todos.getAll()
   .then((todos) => {
-     res.json(todos)
-   /* todos.forEach(todo => {
-    });
-    res.render("get", 
+         res.render("index", 
     {
         title : "Florent",
-        name: todo['name'],  // On récupère le nom et l'avancée de la tâche
-        completion: todo['completion']
-    })*/
-    
-
-
+        todos : todos
+    })
+        /*todos.forEach(todo => {
+         res.render("index", { todo})
+    });*/
 })
 
   .catch((err) => {
@@ -69,8 +65,8 @@ router.put('/edit/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   req.body.updated_at = new Date().toISOString().
 
-  replace(/T/, ' ').      // replace T with a space
-  replace(/\..+/, '')     // delete the dot and everything after // Update time
+  replace(/T/, ' ').      
+  replace(/\..+/, '')     
   
   req.body.id = req.params.id // Add id to body
   Todos.update(req.body)
