@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
- <title>{{{title}}}</title>
-</head>
-<body>
+    <head>
+        <title>{{{title}}}</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/background.css">
+    </head>
+<body align="center">
 
-<h1>Une tache a bien été ajoutée ! Elle a l'id : <span style="color:green">{{{id}}}</span></h1>
+<h1>Todo added with success ! Id :  <span style="color:green">{{{id}}}</span></h1>
 
 
-<a href="todos/{{{id}}}">See todo</a>
+<br>
+<a href="todos/{{{id}}}"><button class="btn btn-success">See todo</button></a>
+<br>
+<br>
 <br>
 
+<div align="center">
+  <a href="/todos"><button class="btn btn-dark btn-lg mt-4">Return to the todos manager</button></a>
+</div>
 
 <br>
 <br>

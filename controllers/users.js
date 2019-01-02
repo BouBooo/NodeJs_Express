@@ -6,18 +6,12 @@ const bcrypt = require('bcryptjs');
 router.get('/', (req, res) => {
   Users.getAll()
   .then((users) => {
-     res.json(users)
-   /* todos.forEach(todo => {
-    });
-    res.render("get", 
+         res.render("index_users", 
     {
-        title : "Florent",
-        name: todo['name'],  // On récupère le nom et l'avancée de la tâche
-        completion: todo['completion']
-    })*/
-    
-
-
+        title : "Users manager",
+        h1 : "Users manager",
+        users : users
+    })
 })
 
   .catch((err) => {

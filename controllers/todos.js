@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
   .then((todos) => {
          res.render("index", 
     {
-        title : "Florent",
+        title : "Todos manager",
+        h1 : "Todos manager",
         todos : todos
     })
         /*todos.forEach(todo => {
