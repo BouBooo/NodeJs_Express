@@ -20,11 +20,13 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  /*if (!req.params.id) return res.status(404).send('NOT FOUND')*/
+  if (!req.params.id) return res.status(404).send('NOT FOUND')
   Users.findOne(req.params.id)
   .then((user) => 
-    res.render("get_user", 
-    {
+  res.format({
+    html: () => {   // For html render
+      res.render("get_user", 
+      {
         title : "Florent",
         id : user['id'],
         firstname : user['firstname'], // On récupère le nom et l'avancée de la tâche
@@ -34,8 +36,12 @@ router.get('/:id', (req, res) => {
         password: user['password'],
         created_at: user['created_at'],
         updated_at: user['updated_at']
-    }))
-  
+      })
+    },
+    json: () => {  // For Postman 
+      res.json(user)
+    }
+  }))
   .catch((err) => {
     return res.status(404).send(err)
   })

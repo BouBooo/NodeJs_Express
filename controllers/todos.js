@@ -25,17 +25,24 @@ router.get('/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   Todos.findOne(req.params.id)
   .then((todo) => 
-    res.render("get", 
-    {
-        title : "Florent",
-        name: todo['name'],  // On récupère le nom et l'avancée de la tâche
-        completion: todo['completion'],
-        id: todo['id'],
-        user_id: todo['user_id'],
-        created_at: todo['created_at'],
-        updated_at: todo['updated_at']
-    }))
-  
+  res.format({
+    html: () => {   // For html render
+      res.render("get", 
+      {
+          title : "Florent",
+          name: todo['name'],  // On récupère le nom et l'avancée de la tâche
+          completion: todo['completion'],
+          id: todo['id'],
+          user_id: todo['user_id'],
+          created_at: todo['created_at'],
+          updated_at: todo['updated_at']
+      })
+    },
+    json: () => {  // For Postman 
+      res.json(todo)
+    }
+  }))
+
   .catch((err) => {
     return res.status(404).send(err)
   })
