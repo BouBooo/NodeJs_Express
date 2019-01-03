@@ -3,6 +3,10 @@
 Langage utilisé : Node JS
 
 Modules : 
+  - Content-Type: application/json
+  - Accept: application/json
+  - Content-Type: application/json
+  - Accept: application/json
           1. bcrypt
           2. dateformat
           - express
