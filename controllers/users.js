@@ -27,9 +27,9 @@ router.get('/:id', (req, res) => {
     html: () => {   // For html render
       res.render("get_user", 
       {
-        title : "Florent",
+        title : "Users",
         id : user['id'],
-        firstname : user['firstname'], // On récupère le nom et l'avancée de la tâche
+        firstname : user['firstname'], 
         lastname : user['lastname'],
         email: user['email'],
         username: user['username'],
@@ -121,13 +121,18 @@ router.delete('/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   Users.delete(req.params.id)
   .then(() => 
-  res.render("delete_user", 
-  {
-      title : "Florent"
+  res.format({
+    html: () => {   // For html render
+      res.render("delete_user", 
+      {
+          title : "Florent"
+      })
+    },
+    json: () => {  // For Postman 
+      res.json("User deleted with success ! ")
+    }
   }))
 
-
-  /*res.json({ message: 'Todo supprimée avec succès' }))*/
   .catch((err) => {
     return res.status(404).send(err)
   })

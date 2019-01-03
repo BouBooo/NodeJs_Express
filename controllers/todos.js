@@ -95,13 +95,18 @@ router.delete('/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   Todos.delete(req.params.id)
   .then(() => 
-  res.render("delete", 
-  {
-      title : "Florent"
+  res.format({
+    html: () => {   // For html render
+      res.render("delete", 
+      {
+          title : "Florent"
+      })
+    },
+    json: () => {  // For Postman 
+      res.json("Todo deleted with success ! ")
+    }
   }))
 
-
-  /*res.json({ message: 'Todo supprimée avec succès' }))*/
   .catch((err) => {
     return res.status(404).send(err)
   })
