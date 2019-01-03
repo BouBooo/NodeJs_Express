@@ -3,17 +3,14 @@
 Langage utilisé : Node JS
 
 Modules : 
-  - Content-Type: application/json
-  - Accept: application/json
-  - Content-Type: application/json
-  - Accept: application/json
-          1. bcrypt
-          2. dateformat
-          - express
-          - hbs
-          - method_override
-          - lodash
-          - sqlite
+  - bcrypt
+  - dateformat
+  - express
+  - hbs
+  - method_override
+  - lodash
+  - sqlite
+
 
 Style : Feuilles de style Bootstrap 
 
