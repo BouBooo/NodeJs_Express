@@ -50,13 +50,9 @@ router.post('/', (req, res) => {
     res.render("add", 
     {
         title : "Florent",
-        name: todo['name'],  // On récupère le nom et l'avancée de la tâche
-        completion: todo['completion'],
-        id: todo['id'],
-        created_at: todo['created_at'],
-        updated_at: todo['updated_at'],
-        user_id: todo['user_id'],
-        user_id: user['id']
+        id : todo['id'],
+        name : todo['name'],
+        completion : todo['completion']
     }))
   .catch((err) => {
     return res.status(404).send(err)

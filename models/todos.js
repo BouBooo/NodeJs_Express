@@ -10,16 +10,15 @@ module.exports = {
   },
   async create(params) {
 
-    return db.all("SELECT rowid AS id, * FROM users")
     params.created_at = new Date().toISOString().
   
-      replace(/T/, ' ').      // replace T with a space
-      replace(/\..+/, '')     // delete the dot and everything after
+      replace(/T/, ' ').
+      replace(/\..+/, '')    
 
     params.updated_at = new Date().toISOString().
 
-    replace(/T/, ' ').      // replace T with a space
-    replace(/\..+/, '')     // delete the dot and everything after
+    replace(/T/, ' ').   
+    replace(/\..+/, '')     
     
     const data = _.values(params)
 
@@ -51,5 +50,3 @@ module.exports = {
     }
   },
 }
-
-
