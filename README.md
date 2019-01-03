@@ -7,7 +7,7 @@ Modules :
           - dateformat
           - express
           - hbs
-          - method-override
+          - method_override
           - lodash
           - sqlite
 
