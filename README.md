@@ -2,7 +2,8 @@
 
 Langage utilisé : Node JS
 
-Modules : - bcrypt
+Modules : 
+          - bcrypt
           - dateformat
           - express
           - hbs
