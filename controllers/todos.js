@@ -55,7 +55,8 @@ router.post('/', (req, res) => {
         id: todo['id'],
         created_at: todo['created_at'],
         updated_at: todo['updated_at'],
-        user_id: todo['user_id']
+        user_id: todo['user_id'],
+        user_id: user['id']
     }))
   .catch((err) => {
     return res.status(404).send(err)

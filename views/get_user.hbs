@@ -16,11 +16,14 @@
 
 <h1 align="center">User id {{{id}}}</h1> 
 
-<div align="right">
+<div align="center">
   <a href="/users"><button class="btn btn-dark btn-lg mt-4">Return to the users manager</button></a>
 </div>
 
 <br>
+
+
+
 
   <div class="container">
   <table class="table table-striped table-bordered" width="55%">
@@ -54,6 +57,12 @@
   </table>
 
 <br>
+
+<div align="center">
+  <a href="/users/{{id}}/todos"><button class="btn btn-dark btn-lg mt-4">See todos for this user</button></a>
+</div>
+<br>
+
 <br>
 
 <h2>Edit this user</h2>
@@ -117,37 +126,6 @@
     </tr>
   </table>
   </form>
-
-  <!--
-  <div class="mw-40">
-    <form method="POST" action="edit/{{{id}}}?_method=PUT">
-        <div class="form-example">
-           
-            
-          </div>
-          <br>
-        <div class="form-example">
-           
-            
-          </div>
-          <br>
-        <div class="form-example">
-           <label for="name">Yes : </label>
-            <input class="form-control" width="20px" type="name" name="name" id="name" required>
-          </div>
-          <br>
-          <div class="form-example">
-            <label for="completion">User : </label>
-            <select name="completion" id="completion">
-              <option value="todo">todo</option>
-              <option value="inprogress">inprogress</option>
-              <option value="done">done</option>
-            </select>
-          </div>
-          <br>
-          <button type="submit"> Modifier </button>
-      </form>
-      -->
 
     </div>
 

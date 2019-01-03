@@ -41,6 +41,27 @@ router.get('/:id', (req, res) => {
   })
 })
 
+
+router.get('/:id/todos', (req, res) => {
+  Users.findOne(req.params.id)
+  .then((users) => {
+      Users.getTodos(req.params.id)
+      .then((todos) => {
+            res.render("user_todos", 
+            {
+            h1 : 'Todos for the user : ' + req.params.id,
+            title: 'Todos for the user : ' + req.params.id,
+            users : users,
+            todos : todos
+            })
+      })
+    })
+
+  .catch((err) => {
+    return res.status(404).send(err)
+  })
+})
+
 router.post('/', (req, res) => {
 
   Users.create([req.body.firstname, req.body.lastname, req.body.username, req.body.password, req.body.email])

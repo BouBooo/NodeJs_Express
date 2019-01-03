@@ -10,6 +10,7 @@ module.exports = {
   },
   async create(params) {
 
+    return db.all("SELECT rowid AS id, * FROM users")
     params.created_at = new Date().toISOString().
   
       replace(/T/, ' ').      // replace T with a space

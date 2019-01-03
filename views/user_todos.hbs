@@ -17,47 +17,42 @@
 <h1 align="center">{{{h1}}}</h1>
 <br>
 <div align="center">
-  <a href="/todos"><button class="btn btn-dark btn-lg mt-4">Todos manager</button></a>
+  <a href="/users"><button class="btn btn-dark btn-lg mt-4">Users manager</button></a>
 </div>
 <br>
-
 
 <div class="container">
     <div id="comments">
     <table class="table table-striped table-bordered">
       <tr width="30%">
         <th>Id</th>
-        <th>Lastame</th>
-        <th>Firstname</th>
-        <th>Mail</th>
-        <th>Password</th>
-        <th>Username</th>
+        <th>Name</th>
+        <th>Completion</th>
+        <th>User</th>
         <th>Creation date</th>
-        <th>Update date</th>
+        <th>Edition date</th>
         <th>Delete</th>
         <th>View</th>
       </tr>
 
 
-      {{#each users}}
+      {{#each todos}}
         <tr width="30%">
         <td align="center">{{{id}}}</td>
-        <td align="center">{{{lastname}}}</td>
-        <td align="center">{{{firstname}}}</td>
-        <td align="center">{{{email}}}</td>
-        <td align="center">{{{password}}}</td>
-        <td align="center">{{{username}}}</td>
+        <td align="center">{{{name}}}</td>
+        <td align="center">{{{completion}}}</td>
+        <td align="center">{{{user_id}}}</td>
         <td align="center">{{{created_at}}}</td>
         <td align="center">{{{updated_at}}}</td>
         <td align="center">
-          <form method="POST" action="users/{{{id}}}?_method=DELETE">
+          <form method="POST" action="todos/{{{id}}}?_method=DELETE">
               <button class="btn btn-link" type="submit"> Delete </button>
           </form>
           <br>
           <br>
           </td>
 
-        <td align="center"><a class="nav-link" href="/users/{{{id}}}">View user</a></td>
+        <td align="center"><a class="nav-link" href="/todos/{{{id}}}">View task</a></td>
 
       </tr>
       {{/each}}

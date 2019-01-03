@@ -2,6 +2,9 @@ const db = require('sqlite')
 const _ = require('lodash')
 
 module.exports = {
+  getTodos(user_id) {
+    return db.all("SELECT rowid AS id, * FROM todos WHERE user_id = ?", user_id)
+  },
   getAll() {
     return db.all("SELECT rowid AS id, * FROM users")
   },
