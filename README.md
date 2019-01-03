@@ -1,5 +1,18 @@
 ﻿# NodeJs_Express
 
+Langage utilisé : Node JS
+
+Modules : - bcrypt
+          - dateformat
+          - express
+          - hbs
+          - method-override
+          - lodash
+          - sqlite
+
+Style : Feuilles de style Bootstrap 
+
+
 Les tables suivantes sont celles à implémentées :
   todos: 
     message, completion, updatedAt, createdAt, userId
@@ -48,4 +61,4 @@ Un middleware de 404 sera necessaire pour toutes les requêtes qui n'arrive pas 
 Pour les formulaires avec une méthode autre que GET et POST vous aurez besoin du module methode overide sur npm dans la section 'override using a query value'.
 cf: https://www.npmjs.com/package/method-override
 
-Des points de style seront attribués pour vous faciliter la tache les frameworks CSS sont autorisés.
+
