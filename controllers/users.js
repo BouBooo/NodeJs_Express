@@ -37,6 +37,7 @@ router.get('/:id', (req, res) => {
         created_at: user['created_at'],
         updated_at: user['updated_at']
       })
+      console.log(' User -> get/:id');
     },
     json: () => {  // For Postman 
       res.json(user)
@@ -98,19 +99,26 @@ router.put('/:id', (req, res) => {
   req.body.id = req.params.id // Add id to body
   Users.update(req.body)
   .then((user) => 
-  res.render("put_user", 
-  {
-    title : "Florent",
-    id : user['id'],
-    firstname : user['firstname'], // On récupère le nom et l'avancée de la tâche
-    lastname : user['lastname'],
-    email: user['email'],
-    username: user['username'],
-    password: user['password'],
-    created_at: user['created_at'],
-    updated_at: user['updated_at']
+  res.format({
+    html: () => {   // For html render
+      res.render("put_user", 
+      {
+        title : "Florent",
+        id : user['id'],
+        firstname : user['firstname'], // On récupère le nom et l'avancée de la tâche
+        lastname : user['lastname'],
+        email: user['email'],
+        username: user['username'],
+        password: user['password'],
+        created_at: user['created_at'],
+        updated_at: user['updated_at']
+      })
+      console.log(' User -> put/:id');
+    },
+    json: () => {  // For Postman 
+      res.json("User updated with success ! ")
+    }
   }))
-
   
   .catch((err) => {
     return res.status(404).send(err)
@@ -127,6 +135,7 @@ router.delete('/:id', (req, res) => {
       {
           title : "Florent"
       })
+      console.log(' User -> delete/:id');
     },
     json: () => {  // For Postman 
       res.json("User deleted with success ! ")

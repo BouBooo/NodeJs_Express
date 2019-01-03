@@ -37,6 +37,7 @@ router.get('/:id', (req, res) => {
           created_at: todo['created_at'],
           updated_at: todo['updated_at']
       })
+      console.log(' Todo -> get/:id');
     },
     json: () => {  // For Postman 
       res.json(todo)
@@ -76,16 +77,24 @@ router.put('/edit/:id', (req, res) => {
   req.body.id = req.params.id // Add id to body
   Todos.update(req.body)
   .then((todo) => 
-  res.render("put", 
-  {
-      title : "Florent",
-      name: todo['name'],  // On récupère le nom et l'avancée de la tâche
-      completion: todo['completion'],
-      id: todo['id'],
-      created_at: todo['created_at'],
-      updated_at: todo['updated_at']
+  res.format({
+    html: () => {   // For html render
+      res.render("put", 
+      {
+          title : "Florent",
+          name: todo['name'],  
+          completion: todo['completion'],
+          id: todo['id'],
+          created_at: todo['created_at'],
+          updated_at: todo['updated_at']
+      })
+      console.log(' Todo -> put/:id');
+    },
+    json: () => {  // For Postman 
+      res.json("Todo updated with success ! ")
+    }
   }))
-  
+
   .catch((err) => {
     return res.status(404).send(err)
   })
@@ -101,6 +110,7 @@ router.delete('/:id', (req, res) => {
       {
           title : "Florent"
       })
+      console.log(' Todo -> delete/:id');
     },
     json: () => {  // For Postman 
       res.json("Todo deleted with success ! ")
