@@ -3,8 +3,8 @@
 Langage utilisé : Node JS
 
 Modules : 
-          - bcrypt
-          - dateformat
+          1. bcrypt
+          2. dateformat
           - express
           - hbs
           - method_override
