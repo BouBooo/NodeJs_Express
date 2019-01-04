@@ -2,14 +2,19 @@ const db = require('sqlite')
 const _ = require('lodash')
 
 module.exports = {
+  /* Get all todos */
   getAll() {
     return db.all("SELECT rowid AS id, * FROM todos")
   },
+
+  /* Get a specific todo */
   findOne(id) {
     return db.get("SELECT rowid AS id, * FROM todos WHERE rowid = ?", id)
   },
-  async create(params) {
 
+  /* Add a todo */
+  async create(params) {
+    /* Improve date format */
     params.created_at = new Date().toISOString().
   
       replace(/T/, ' ').
@@ -26,9 +31,13 @@ module.exports = {
 
     return this.findOne(lastID)
   },
+
+  /* Delete a todo */
   delete(id) {
     return db.run("DELETE FROM todos WHERE rowid = ?", id)
   },
+
+  /* Edit a todo */
   async update(params) {
     let string = ''
 

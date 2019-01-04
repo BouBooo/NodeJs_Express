@@ -10,6 +10,8 @@ api.set('view engine', 'hbs')
 
 api.use(methodOverride('_method'))
 
+/* Creation of users and todos tables */
+
 db.open('api.db').then(() => {
   Promise.all([
     db.run("CREATE TABLE IF NOT EXISTS todos (name, completion, user_id, created_at, updated_at)"),

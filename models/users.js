@@ -2,26 +2,33 @@ const db = require('sqlite')
 const _ = require('lodash')
 
 module.exports = {
+  /* Get todos for a specific user */
   getTodos(user_id) {
     return db.all("SELECT rowid AS id, * FROM todos WHERE user_id = ?", user_id)
   },
+  
+  /* Get all users */
   getAll() {
     return db.all("SELECT rowid AS id, * FROM users")
   },
+
+  /* Get a specific user */
   findOne(id) {
     return db.get("SELECT rowid AS id, * FROM users WHERE rowid = ?", id)
   },
+
+  /* Add a user */
   async create(params) {
 
+    /* Improve date format */
     params.created_at = new Date().toISOString(). 
-
-    replace(/T/, ' ').      // replace T with a space
-    replace(/\..+/, '')     // delete the dot and everything after  
+    replace(/T/, ' ').      
+    replace(/\..+/, '')     
 
     params.updated_at = new Date().toISOString(). 
 
-    replace(/T/, ' ').      // replace T with a space
-    replace(/\..+/, '')     // delete the dot and everything after  
+    replace(/T/, ' ').      
+    replace(/\..+/, '')      
 
     const data = _.values(params)
 
@@ -29,9 +36,13 @@ module.exports = {
 
     return this.findOne(lastID)
   },
+
+  /* Delete a user */
   delete(id) {
     return db.run("DELETE FROM users WHERE rowid = ?", id)
   },
+
+  /* Edit a user */
   async update(params) {
     let string = ''
 

@@ -3,16 +3,25 @@ const Users = require('./../models/users')
 const _ = require('lodash')
 const bcrypt = require('bcryptjs');
 
+/* Get all users */
+
 router.get('/', (req, res) => {
   Users.getAll()
-  .then((users) => {
-         res.render("index_users", 
-    {
+  .then((users) => 
+  res.format({
+    html: () => {   // HTML render of todos
+      res.render("index_users", 
+      {
         title : "Users manager",
         h1 : "Users manager",
         users : users
-    })
-})
+      })
+      console.log(' Todo -> get all todos');
+    },
+    json: () => {  
+      res.json(users)   // Json render of todos
+    }
+  }))
 
   .catch((err) => {
     return res.status(404).send(err)
@@ -24,7 +33,7 @@ router.get('/:id', (req, res) => {
   Users.findOne(req.params.id)
   .then((user) => 
   res.format({
-    html: () => {   // For html render
+    html: () => {   // HTML render of todos
       res.render("get_user", 
       {
         title : "Users",
@@ -39,7 +48,7 @@ router.get('/:id', (req, res) => {
       })
       console.log(' User -> get/:id');
     },
-    json: () => {  // For Postman 
+    json: () => {  // Json render of todos
       res.json(user)
     }
   }))
@@ -56,10 +65,10 @@ router.get('/:id/todos', (req, res) => {
       .then((todos) => {
             res.render("user_todos", 
             {
-            h1 : 'Todos for the user : ' + req.params.id,
-            title: 'Todos for the user : ' + req.params.id,
-            users : users,
-            todos : todos
+              h1 : 'Todos for the user : ' + req.params.id,
+              title: 'Todos for the user : ' + req.params.id,
+              users : users,
+              todos : todos
             })
       })
     })
@@ -73,18 +82,27 @@ router.post('/', (req, res) => {
 
   Users.create([req.body.firstname, req.body.lastname, req.body.username, req.body.password, req.body.email])
   .then((user) => 
-  res.render("add_users", 
-  {
-      title : "Florent",
-      id : user['id'],
-      firstname : user['firstname'], // On récupère le nom et l'avancée de la tâche
-      lastname : user['lastname'],
-      email: user['email'],
-      username: user['username'],
-      password: user['password'],
-      created_at: user['created_at'],
-      updated_at: user['updated_at']
-  }))
+    res.format({
+    html: () => {   // For html render
+      res.render("add_users", 
+      {
+          title : "Florent",
+          id : user['id'],
+          firstname : user['firstname'], 
+          lastname : user['lastname'],
+          email: user['email'],
+          username: user['username'],
+          password: user['password'],
+          created_at: user['created_at'],
+          updated_at: user['updated_at']
+      })
+          console.log(' User -> post/:id');
+        },
+        json: () => {  // For Postman 
+          res.json(user)
+        }
+      }))
+      
   .catch((err) => {
     return res.status(404).send(err)
   })

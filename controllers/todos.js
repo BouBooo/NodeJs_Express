@@ -2,24 +2,34 @@ const router = require('express').Router()
 const Todos = require('./../models/todos')
 const _ = require('lodash')
 
+
+/* Get all todos */
+
 router.get('/', (req, res) => {
   Todos.getAll()
-  .then((todos) => {
-         res.render("index", 
-    {
+  .then((todos) => 
+  res.format({
+    html: () => {   // HTML render of todos
+      res.render("index", 
+      {
         title : "Todos manager",
         h1 : "Todos manager",
         todos : todos
-    })
-        /*todos.forEach(todo => {
-         res.render("index", { todo})
-    });*/
-})
+      })
+      console.log(' Todos -> Get todos');
+    },
+    json: () => {  
+      res.json(todos)   // Json render of todos
+    }
+  }))
 
   .catch((err) => {
     return res.status(404).send(err)
   })
 })
+
+
+/* Get specific todo */
 
 router.get('/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
@@ -30,14 +40,14 @@ router.get('/:id', (req, res) => {
       res.render("get", 
       {
           title : "Florent",
-          name: todo['name'],  // On récupère le nom et l'avancée de la tâche
+          name: todo['name'],  
           completion: todo['completion'],
           id: todo['id'],
           user_id: todo['user_id'],
           created_at: todo['created_at'],
           updated_at: todo['updated_at']
       })
-      console.log(' Todo -> get/:id');
+      console.log(' Todos -> Get todo');
     },
     json: () => {  // For Postman 
       res.json(todo)
@@ -49,23 +59,37 @@ router.get('/:id', (req, res) => {
   })
 })
 
+
+/* Add a todo */
+
 router.post('/', (req, res) => {
   if (!req.body || (req.body && (!req.body.name || !req.body.completion || !req.body.user_id))) 
   return res.status(404).send('NOT FOUND')
 
   Todos.create(req.body)
-  .then((todo) => /*res.json(todo))*/
+  .then((todo) => 
+  res.format({
+  html: () => {   // For html render
     res.render("add", 
     {
         title : "Florent",
         id : todo['id'],
         name : todo['name'],
         completion : todo['completion']
-    }))
+    })
+    console.log(' Todos -> Post todo');
+  },
+  json: () => {  // For Postman 
+    res.json(todo)
+  }
+}))
   .catch((err) => {
     return res.status(404).send(err)
   })
 })
+
+
+/* Edit a todo */
 
 router.put('/edit/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
@@ -88,7 +112,7 @@ router.put('/edit/:id', (req, res) => {
           created_at: todo['created_at'],
           updated_at: todo['updated_at']
       })
-      console.log(' Todo -> put/:id');
+      console.log(' Todos -> Edit todo');
     },
     json: () => {  // For Postman 
       res.json("Todo updated with success ! ")
@@ -110,7 +134,7 @@ router.delete('/:id', (req, res) => {
       {
           title : "Florent"
       })
-      console.log(' Todo -> delete/:id');
+      console.log(' Todos -> Delete todo');
     },
     json: () => {  // For Postman 
       res.json("Todo deleted with success ! ")
