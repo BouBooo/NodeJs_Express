@@ -1,8 +1,8 @@
 ﻿# NodeJs_Express
 
-Langage utilisé : Node JS
+##Langage utilisé : Node JS
 
-Modules : 
+##Modules : 
   - bcrypt
   - dateformat
   - express
@@ -12,7 +12,7 @@ Modules :
   - sqlite
 
 
-Style : Feuilles de style Bootstrap 
+##Style : Feuilles de style Bootstrap 
 
 
 Les tables suivantes sont celles à implémentées :
@@ -60,7 +60,5 @@ Un middleware de 404 sera necessaire pour toutes les requêtes qui n'arrive pas 
  - HTML: une page de 404 
 
 
-Pour les formulaires avec une méthode autre que GET et POST vous aurez besoin du module methode overide sur npm dans la section 'override using a query value'.
-cf: https://www.npmjs.com/package/method-override
 
 
