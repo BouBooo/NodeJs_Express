@@ -100,7 +100,7 @@ router.post('/', (req, res) => {
           console.log(' Users -> Add user');
         },
         json: () => {  // For Postman 
-          res.json(user)
+          res.json("User added with success ! ")
         }
       }))
       
@@ -113,8 +113,8 @@ router.put('/:id', (req, res) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   req.body.updated_at = new Date().toISOString().  // Update time
 
-  replace(/T/, ' ').      // replace T with a space
-  replace(/\..+/, '')     // delete the dot and everything after  
+  replace(/T/, ' ').    
+  replace(/\..+/, '')     
   req.body.id = req.params.id // Add id to body
   Users.update(req.body)
   .then((user) => 

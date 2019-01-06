@@ -1,0 +1,31 @@
+<div  align="center">
+<h2>Add a todo</h2>
+        
+        <form method="POST" action="/todos">
+          <div class="form-example">
+           <label for="name">Name : </label>
+            <input width="20px" type="name" name="name" id="name" required>
+          </div>
+          <br>
+          <div class="form-example">
+            <label for="completion">Completion : </label>
+            <select name="completion" id="completion">
+              <option value="todo">todo</option>
+              <option value="inprogress">inprogress</option>
+              <option value="done">done</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-example">
+            <label for="user_id">User : </label>
+            <select name="user_id" id="user_id">
+              <option value="1">user_1</option>
+              <option value="2">user_2</option>
+              <option value="3">user_3</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit"> Add </button>
+      </form>
+  </div>
+</div>
