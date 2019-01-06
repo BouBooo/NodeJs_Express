@@ -5,7 +5,7 @@ const _ = require('lodash')
 
 /* Get all todos */
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Todos.getAll()
   .then((todos) => 
   res.format({
@@ -24,14 +24,14 @@ router.get('/', (req, res) => {
   }))
 
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
 
 /* Get specific todo */
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   Todos.findOne(req.params.id)
   .then((todo) => 
@@ -55,14 +55,14 @@ router.get('/:id', (req, res) => {
   }))
 
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
 
 /* Add a todo */
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   if (!req.body || (req.body && (!req.body.name || !req.body.completion || !req.body.user_id))) 
   return res.status(404).send('NOT FOUND')
 
@@ -84,14 +84,14 @@ router.post('/', (req, res) => {
   }
 }))
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
 
 /* Edit a todo */
 
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', (req, res, next) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   req.body.updated_at = new Date().toISOString().
 
@@ -120,11 +120,11 @@ router.put('/edit/:id', (req, res) => {
   }))
 
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res, next) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   Todos.delete(req.params.id)
   .then(() => 
@@ -142,27 +142,10 @@ router.delete('/:id', (req, res) => {
   }))
 
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
 
-router.use((err, req, res, next) => {
-  res.format({
-    html: () => {
-      console.log("error : " + err)
-      res.render("error404", {
-        error: err
-      })
-    },
-    json: () => {
-      console.log("error : " + err)
-      res.json({
-        message: "Error 500",
-        description: "Server Error"
-      })
-    }
-  })
-})
 
 module.exports = router

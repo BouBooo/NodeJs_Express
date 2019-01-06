@@ -1,5 +1,8 @@
 const db = require('sqlite')
 const _ = require('lodash')
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
+const password = bcrypt.hashSync("B4c0/\/", salt);
 
 module.exports = {
   /* Get todos for a specific user */

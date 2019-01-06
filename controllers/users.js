@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 
 /* Get all users */
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Users.getAll()
   .then((users) => 
   res.format({
@@ -22,13 +22,12 @@ router.get('/', (req, res) => {
       res.json(users)   // Json render of todos
     }
   }))
-
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   Users.findOne(req.params.id)
   .then((user) => 
@@ -53,12 +52,12 @@ router.get('/:id', (req, res) => {
     }
   }))
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
 
-router.get('/:id/todos', (req, res) => {
+router.get('/:id/todos', (req, res, next) => {
   Users.findOne(req.params.id)
   .then((users) => {
       Users.getTodos(req.params.id)
@@ -75,11 +74,11 @@ router.get('/:id/todos', (req, res) => {
     })
 
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
 
   Users.create([req.body.firstname, req.body.lastname, req.body.username, req.body.password, req.body.email])
   .then((user) => 
@@ -105,16 +104,17 @@ router.post('/', (req, res) => {
       }))
       
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', (req, res, next) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   req.body.updated_at = new Date().toISOString().  // Update time
 
   replace(/T/, ' ').    
   replace(/\..+/, '')     
+
   req.body.id = req.params.id // Add id to body
   Users.update(req.body)
   .then((user) => 
@@ -140,11 +140,12 @@ router.put('/:id', (req, res) => {
   }))
   
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 
-router.delete('/:id', (req, res) => {
+
+router.delete('/:id', (req, res, next) => {
   if (!req.params.id) return res.status(404).send('NOT FOUND')
   Users.delete(req.params.id)
   .then(() => 
@@ -162,7 +163,7 @@ router.delete('/:id', (req, res) => {
   }))
 
   .catch((err) => {
-    return res.status(404).send(err)
+    return next(err)
   })
 })
 

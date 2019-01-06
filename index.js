@@ -15,11 +15,7 @@ api.use(methodOverride('_method'))
 db.open('api.db').then(() => {
   Promise.all([
     db.run("CREATE TABLE IF NOT EXISTS todos (name, completion, user_id, created_at, updated_at)"),
-    /*db.run("DROP TABLE todos"),*/
-     /*db.run("INSERT INTO todos VALUES('todo_name','inprogress', '8', 'date_created', 'date_up')"),*/
-    /*db.run("DROP TABLE users"),*/
     db.run("CREATE TABLE IF NOT EXISTS users (firstname, lastname, username, password, email, created_at, updated_at)"),
-    /*db.run("INSERT INTO users VALUES('name','firstname', 'username', 'password','email', '', '')"),*/
   ]).then(() => {
     console.log('Database todos and users is ready')
   }).catch((err) => {
@@ -38,7 +34,24 @@ api.use(bodyParser.urlencoded({ extended: false }))
 api.use('/todos', require('./controllers/todos.js'))
 api.use('/users', require('./controllers/users.js'))
 
+//MIDDLEWARE 404
+
+api.use((err, req, res, next) => {
+  res.format({
+    html: () => {
+      console.log(err)
+      res.render("error", {
+        error: err
+      })
+    },
+    json: () => {
+      res.json("Error detected") 
+    }
+  })
+})
+
 api.listen(3000);
 
 console.log("http://localhost:3000/todos -> for todos");
 console.log("http://localhost:3000/users -> for users");
+
