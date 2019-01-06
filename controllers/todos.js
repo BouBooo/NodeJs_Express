@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
         h1 : "Todos manager",
         todos : todos
       })
-      console.log(' Todos -> Get todos');
+      console.log(' Todos -> Get all todos');
     },
     json: () => {  
       res.json(todos)   // Json render of todos
@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
           created_at: todo['created_at'],
           updated_at: todo['updated_at']
       })
-      console.log(' Todos -> Get todo');
+      console.log(' Todos -> Get todo  ' + todo['id']);
     },
     json: () => {  // For Postman 
       res.json(todo)

@@ -15,7 +15,7 @@
 
 <h1 align="center">Todo {{{id}}}</h1>
 
-<div align="right">
+<div align="center">
   <a href="/todos"><button class="btn btn-dark btn-lg mt-4">Return to the todos manager</button></a>
 </div>
 
@@ -64,6 +64,7 @@
     <tr width="30%">
       <th><label for="name">Name : </label></th>
       <th><label for="completion">Completion : </label></th>
+      <th><label for="user_id">User_id : </label></th>
       <th>Update todo</th>
  
 
@@ -79,6 +80,23 @@
               <option value="done">done</option>
             </select>
       </div>
+      </td>
+      <td align="center">
+        <select class="form-control" name="user_id" id="user_id">
+              <option selected="selected" value="{{{user_id}}}"> Default :  user_{{{user_id}}} </option>
+              <option value="1">user_1</option>
+              <option value="2">user_2</option>
+              <option value="3">user_3</option>
+              <option value="4">user_4</option>
+              <option value="5">user_5</option>
+              <option value="6">user_6</option>
+              <option value="7">user_7</option>
+              <option value="8">user_8</option>
+              <option value="9">user_9</option>
+              <option value="10">user_10</option>
+              <option value="11">user_11</option>
+              <option value="12">user_12</option>
+          </select>
       </td>
       <td align="center"><button class="btn btn-link" type="submit"> Update todo </button></td>
 
@@ -123,6 +141,15 @@
               <option value="1">user_1</option>
               <option value="2">user_2</option>
               <option value="3">user_3</option>
+              <option value="4">user_4</option>
+              <option value="5">user_5</option>
+              <option value="6">user_6</option>
+              <option value="7">user_7</option>
+              <option value="8">user_8</option>
+              <option value="9">user_9</option>
+              <option value="10">user_10</option>
+              <option value="11">user_11</option>
+              <option value="12">user_12</option>
           </select>
       </td>
       <td align="center"><button class="btn btn-link" type="submit"> Add todo </button></td>

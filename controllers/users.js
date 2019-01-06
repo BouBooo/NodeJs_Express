@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
         h1 : "Users manager",
         users : users
       })
-      console.log(' Todo -> get all todos');
+      console.log(' Users -> Get users');
     },
     json: () => {  
       res.json(users)   // Json render of todos
@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
         created_at: user['created_at'],
         updated_at: user['updated_at']
       })
-      console.log(' User -> get/:id');
+      console.log(' Users -> Get user ' + user['lastname'] + ' (id: ' + user['id'] + ')');
     },
     json: () => {  // Json render of todos
       res.json(user)
@@ -70,6 +70,7 @@ router.get('/:id/todos', (req, res) => {
               users : users,
               todos : todos
             })
+            console.log(' Users -> Get user\'s todos');
       })
     })
 
@@ -96,7 +97,7 @@ router.post('/', (req, res) => {
           created_at: user['created_at'],
           updated_at: user['updated_at']
       })
-          console.log(' User -> post/:id');
+          console.log(' Users -> Add user');
         },
         json: () => {  // For Postman 
           res.json(user)
@@ -131,7 +132,7 @@ router.put('/:id', (req, res) => {
         created_at: user['created_at'],
         updated_at: user['updated_at']
       })
-      console.log(' User -> put/:id');
+      console.log(' Users -> Edit user');
     },
     json: () => {  // For Postman 
       res.json("User updated with success ! ")
@@ -153,7 +154,7 @@ router.delete('/:id', (req, res) => {
       {
           title : "Florent"
       })
-      console.log(' User -> delete/:id');
+      console.log(' Users -> Delete user');
     },
     json: () => {  // For Postman 
       res.json("User deleted with success ! ")
