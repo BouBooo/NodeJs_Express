@@ -1,6 +1,7 @@
 ﻿# NodeJs_Express
 
-## Langage utilisé : Node JS
+## Langage utilisé : 
+  Node JS
 
 ## Modules : 
   - bcrypt
@@ -12,8 +13,14 @@
   - sqlite
 
 
-## Style : Feuilles de style Bootstrap 
+## Style : 
+  Feuilles de style Bootstrap 
 
+### Utilisation :
+  ``
+  npm install
+  ``
+  
 
 Les tables suivantes sont celles à implémentées :
   todos: 
