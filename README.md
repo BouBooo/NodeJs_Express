@@ -1,8 +1,8 @@
 ﻿# NodeJs_Express
 
-##Langage utilisé : Node JS
+## Langage utilisé : Node JS
 
-##Modules : 
+## Modules : 
   - bcrypt
   - dateformat
   - express
@@ -12,7 +12,7 @@
   - sqlite
 
 
-##Style : Feuilles de style Bootstrap 
+## Style : Feuilles de style Bootstrap 
 
 
 Les tables suivantes sont celles à implémentées :
